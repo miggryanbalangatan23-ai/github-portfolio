@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetcare Pet Hospital | Compassionate Veterinary Care</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mint: {
+                            50: '#f0fdf9',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        },
+                        coral: {
+                            50: '#fff5f5',
+                            100: '#ffe3e3',
+                            400: '#ff8787',
+                            500: '#ff6b6b',
+                            600: '#fa5252',
+                        },
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                        },
+                        slate: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #0d9488;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-mint-500 selection:text-white">
+
+    <!-- Emergency Top Banner -->
+    <div class="bg-coral-500 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium shadow-inner flex justify-center items-center gap-2">
+        <span class="animate-pulse inline-block w-2.5 h-2.5 rounded-full bg-white"></span>
+        <span><strong>24/7 Pet Emergency Hotline:</strong> Call <a href="tel:12345677890" class="underline hover:text-coral-100 font-bold">(1-800) 555-PETS</a> immediately for urgent care!</span>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 bg-mint-500 text-white rounded-2xl flex items-center justify-center shadow-md shadow-mint-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid font-bold fa-paw text-2xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-slate-900 block leading-tight">VETCARE</span>
+                    <span class="text-xs font-semibold text-mint-600 uppercase tracking-widest">Pet Hospital</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600">
+                <a href="#services" class="hover:text-mint-600 transition-colors">Services & Pricing</a>
+                <a href="#symptom-checker" class="hover:text-mint-600 transition-colors flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-amber-400"></span> Symptom Checker
+                </a>
+                <a href="#vets" class="hover:text-mint-600 transition-colors">Our Vets</a>
+                <a href="#testimonials" class="hover:text-mint-600 transition-colors">Reviews</a>
+                <a href="#location" class="hover:text-mint-600 transition-colors">Contact & Hours</a>
+            </nav>
+
+            <!-- Book CTA & Mobile Menu Trigger -->
+            <div class="flex items-center gap-3">
+                <button onclick="openBookingModal()" class="bg-mint-600 hover:bg-mint-700 text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-lg shadow-mint-600/25 hover:shadow-mint-600/40 hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                    <i class="fa-regular fa-calendar-check text-base"></i>
+                    <span>Book Appointment</span>
+                </button>
+                <button id="mobile-menu-btn" class="md:hidden text-slate-600 p-2 text-xl hover:text-mint-600">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#services" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-mint-50 hover:text-mint-600">Services & Pricing</a>
+            <a href="#symptom-checker" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-mint-50 hover:text-mint-600">Symptom Checker</a>
+            <a href="#vets" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-mint-50 hover:text-mint-600">Our Veterinarians</a>
+            <a href="#testimonials" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-mint-50 hover:text-mint-600">Testimonials & Gallery</a>
+            <a href="#location" class="mobile-link block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-mint-50 hover:text-mint-600">Location & Emergency</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative bg-gradient-to-b from-mint-50/70 via-white to-slate-50 py-16 lg:py-24 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-mint-100 text-mint-800 text-xs sm:text-sm font-semibold">
+                            <i class="fa-solid fa-heart text-coral-500"></i>
+                            <span>Trusted Pet Care Since 2026</span>
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                            Loving Care for Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-mint-600 to-teal-500">Best Friend</span>
+                        </h1>
+                        <p class="text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                            State-of-the-art medical diagnostics, gentle wellness care, and 24/7 emergency services tailored for dogs, cats, and exotic pets.
+                        </p>
+                        
+                        <!-- CTA Group -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <button onclick="openBookingModal()" class="w-full sm:w-auto bg-mint-600 hover:bg-mint-700 text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-mint-600/30 hover:shadow-mint-600/40 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3">
+                                <i class="fa-solid fa-calendar-plus text-lg"></i>
+                                <span>Book Visit Online</span>
+                            </button>
+                            <a href="#symptom-checker" class="w-full sm:w-auto bg-white border border-slate-200 hover:border-mint-300 hover:bg-mint-50/50 text-slate-700 font-semibold px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-stethoscope text-mint-600"></i>
+                                <span>Pet Symptom Guide</span>
+                            </a>
+                        </div>
+
+                        <!-- Highlights Banner -->
+                        <div class="pt-8 border-t border-slate-200/80 grid grid-cols-3 gap-4 text-left">
+                            <div>
+                                <span class="block text-2xl sm:text-3xl font-extrabold text-slate-900">15k+</span>
+                                <span class="text-xs sm:text-sm text-slate-500">Happy Pets Treated</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl sm:text-3xl font-extrabold text-slate-900">4.9 ★</span>
+                                <span class="text-xs sm:text-sm text-slate-500">Google Rating</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl sm:text-3xl font-extrabold text-slate-900">24/7</span>
+                                <span class="text-xs sm:text-sm text-slate-500">ER Doctor On Call</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Image Stack -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto max-w-md lg:max-w-none">
+                            <div class="absolute -top-4 -left-4 w-72 h-72 bg-mint-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob"></div>
+                            <div class="absolute -bottom-4 -right-4 w-72 h-72 bg-amber-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-2000"></div>
+                            
+                            <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+                                <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&w=800&q=80" alt="Veterinarian comforting a happy dog" class="w-full h-[420px] object-cover" onerror="this.src='https://placehold.co/800x600/14b8a6/ffffff?text=Veterinarian+With+Pet'">
+                                <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50 flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-shield-cat text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-bold text-sm text-slate-900">AAHA Accredited Facility</div>
+                                        <div class="text-xs text-slate-500">Highest standards in veterinary medicine</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services & Pricing Overview -->
+        <section id="services" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-mint-600 font-bold text-sm uppercase tracking-wider">Comprehensive Pet Healthcare</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Veterinary Services & Pricing</h2>
+                    <p class="text-slate-600 mt-4 text-base">Transparent pricing with no hidden fees. Choose a service below to learn details or schedule a visit.</p>
+                    
+                    <!-- Category Tabs -->
+                    <div class="flex flex-wrap justify-center gap-2 mt-8" id="service-tabs">
+                        <button onclick="filterServices('all')" class="tab-btn active-tab bg-mint-600 text-white px-4 py-2 rounded-full text-sm font-semibold transition-all">All Services</button>
+                        <button onclick="filterServices('preventative')" class="tab-btn bg-slate-100 text-slate-600 hover:bg-slate-200 px-4 py-2 rounded-full text-sm font-semibold transition-all">Wellness & Prevention</button>
+                        <button onclick="filterServices('medical')" class="tab-btn bg-slate-100 text-slate-600 hover:bg-slate-200 px-4 py-2 rounded-full text-sm font-semibold transition-all">Medical & Dental</button>
+                        <button onclick="filterServices('surgery')" class="tab-btn bg-slate-100 text-slate-600 hover:bg-slate-200 px-4 py-2 rounded-full text-sm font-semibold transition-all">Surgery & ER</button>
+                    </div>
+                </div>
+
+                <!-- Services Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="services-grid">
+                    <!-- Service Card 1 -->
+                    <div class="service-card preventative bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-mint-100 text-mint-700 flex items-center justify-center text-xl mb-5">
+                                <i class="fa-solid fa-stethoscope"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Wellness Exam</h3>
+                            <p class="text-slate-600 text-sm mb-4">Comprehensive nose-to-tail physical examination, weight check, and health consultation.</p>
+                            <ul class="text-xs text-slate-500 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Full body assessment</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Nutritional counseling</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Parasite screening consultation</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-slate-400 block">Est. Cost</span>
+                                <span class="text-xl font-bold text-slate-900">P5,000</span>
+                            </div>
+                            <button onclick="quickBook('Wellness Exam')" class="text-mint-600 font-bold text-sm hover:text-mint-700 flex items-center gap-1">
+                                Book This <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 2 -->
+                    <div class="service-card preventative bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-mint-100 text-mint-700 flex items-center justify-center text-xl mb-5">
+                                <i class="fa-solid fa-syringe"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Vaccinations</h3>
+                            <p class="text-slate-600 text-sm mb-4">Core and lifestyle vaccines tailored to your pet's specific risks and environment.</p>
+                            <ul class="text-xs text-slate-500 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Rabies, DHPP, Bordetella</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> FVRCP & FeLV for cats</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Digital vaccine record portal</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-slate-400 block">Est. Cost</span>
+                                <span class="text-xl font-bold text-slate-900">P750 - P1,000</span>
+                            </div>
+                            <button onclick="quickBook('Vaccinations')" class="text-mint-600 font-bold text-sm hover:text-mint-700 flex items-center gap-1">
+                                Book This <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 3 -->
+                    <div class="service-card medical bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-mint-100 text-mint-700 flex items-center justify-center text-xl mb-5">
+                                <i class="fa-solid fa-tooth"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Dental Cleaning & Care</h3>
+                            <p class="text-slate-600 text-sm mb-4">Professional ultrasonic scaling, polishing, digital dental X-rays, and tooth extractions.</p>
+                            <ul class="text-xs text-slate-500 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Safe anesthesia monitoring</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Full mouth radiographs</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Plaque & tartar removal</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-slate-400 block">Est. Cost</span>
+                                <span class="text-xl font-bold text-slate-900">P1,000 - P4,500</span>
+                            </div>
+                            <button onclick="quickBook('Dental Care')" class="text-mint-600 font-bold text-sm hover:text-mint-700 flex items-center gap-1">
+                                Book This <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 4 -->
+                    <div class="service-card surgery bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-mint-100 text-mint-700 flex items-center justify-center text-xl mb-5">
+                                <i class="fa-solid fa-scissors"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Surgical Procedures</h3>
+                            <p class="text-slate-600 text-sm mb-4">Routine spay/neuter as well as soft tissue and orthopedic surgical interventions.</p>
+                            <ul class="text-xs text-slate-500 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Pre-anesthetic blood screening</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Dedicated surgical monitoring</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Multi-modal pain management</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-slate-400 block">Est. Cost</span>
+                                <span class="text-xl font-bold text-slate-900">P1,000+</span>
+                            </div>
+                            <button onclick="quickBook('Surgical Care')" class="text-mint-600 font-bold text-sm hover:text-mint-700 flex items-center gap-1">
+                                Book This <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 5 -->
+                    <div class="service-card surgery bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-coral-100 text-coral-600 flex items-center justify-center text-xl mb-5">
+                                <i class="fa-solid fa-truck-medical"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Emergency & Critical Care</h3>
+                            <p class="text-slate-600 text-sm mb-4">Immediate triage and life-saving emergency treatment available around the clock.</p>
+                            <ul class="text-xs text-slate-500 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Oxygen therapy & ICU support</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Fast-track trauma care</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> In-house blood bank & fluids</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-slate-400 block">Exam Fee</span>
+                                <span class="text-xl font-bold text-slate-900">P1,200</span>
+                            </div>
+                            <a href="tel:18005557387" class="text-coral-600 font-bold text-sm hover:text-coral-700 flex items-center gap-1">
+                                Call ER Now <i class="fa-solid fa-phone text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 6 -->
+                    <div class="service-card medical bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-mint-100 text-mint-700 flex items-center justify-center text-xl mb-5">
+                                <i class="fa-solid fa-x-ray"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">Diagnostics & Grooming</h3>
+                            <p class="text-slate-600 text-sm mb-4">On-site digital X-rays, ultrasound, rapid lab testing, and gentle hygienic spa grooming.</p>
+                            <ul class="text-xs text-slate-500 space-y-2 mb-6">
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Same-day lab results</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Medicated baths & ear cleaning</li>
+                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-mint-500"></i> Non-invasive ultrasound</li>
+                            </ul>
+                        </div>
+                        <div class="pt-4 border-t border-slate-200 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-slate-400 block">Est. Cost</span>
+                                <span class="text-xl font-bold text-slate-900">P500 - P1800</span>
+                            </div>
+                            <button onclick="quickBook('Diagnostics & Grooming')" class="text-mint-600 font-bold text-sm hover:text-mint-700 flex items-center gap-1">
+                                Book This <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pet Symptom Checker / First-Aid Quick Guide -->
+        <section id="symptom-checker" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <!-- Left Section Info -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold border border-amber-500/30">
+                            <i class="fa-solid fa-kit-medical"></i> Instant Triage Tool
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                            Pet Symptom Assessor & First-Aid Guide
+                        </h2>
+                        <p class="text-slate-300 text-base leading-relaxed">
+                            Not sure if your pet needs emergency care or a routine checkup? Select your pet's current symptoms below for quick guidance and next steps.
+                        </p>
+                        <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 text-xs text-slate-400 space-y-2">
+                            <p class="font-bold text-amber-400 flex items-center gap-2">
+                                <i class="fa-solid fa-circle-exclamation"></i> Disclaimer:
+                            </p>
+                            <p>This interactive guide provides general informative triage assistance and does not replace professional veterinary diagnosis. If in doubt, please call our emergency hotline.</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Interactive Form & Result -->
+                    <div class="lg:col-span-7 bg-slate-800 p-6 sm:p-8 rounded-3xl border border-slate-700 shadow-2xl">
+                        <h3 class="text-xl font-bold mb-4 text-white flex items-center justify-between">
+                            <span>Select Observed Symptoms</span>
+                            <span class="text-xs text-slate-400 font-normal">Select all that apply</span>
+                        </h3>
+
+                        <!-- Symptom Selection Chips -->
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6" id="symptom-chips">
+                            <button onclick="toggleSymptom(this, 'emergency')" class="symptom-chip text-left p-3 rounded-xl border border-slate-600 bg-slate-700/50 hover:bg-slate-700 text-sm transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-lungs text-slate-400"></i> Difficulty Breathing
+                            </button>
+                            <button onclick="toggleSymptom(this, 'emergency')" class="symptom-chip text-left p-3 rounded-xl border border-slate-600 bg-slate-700/50 hover:bg-slate-700 text-sm transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-skull-crossbones text-slate-400"></i> Ingested Poison/Toxic
+                            </button>
+                            <button onclick="toggleSymptom(this, 'urgent')" class="symptom-chip text-left p-3 rounded-xl border border-slate-600 bg-slate-700/50 hover:bg-slate-700 text-sm transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-face-frown text-slate-400"></i> Extreme Lethargy
+                            </button>
+                            <button onclick="toggleSymptom(this, 'urgent')" class="symptom-chip text-left p-3 rounded-xl border border-slate-600 bg-slate-700/50 hover:bg-slate-700 text-sm transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-volcano text-slate-400"></i> Repeated Vomiting
+                            </button>
+                            <button onclick="toggleSymptom(this, 'routine')" class="symptom-chip text-left p-3 rounded-xl border border-slate-600 bg-slate-700/50 hover:bg-slate-700 text-sm transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-bone text-slate-400"></i> Mild Limping
+                            </button>
+                            <button onclick="toggleSymptom(this, 'routine')" class="symptom-chip text-left p-3 rounded-xl border border-slate-600 bg-slate-700/50 hover:bg-slate-700 text-sm transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-bug text-slate-400"></i> Excessive Scratching
+                            </button>
+                            <button onclick="toggleSymptom(this, 'routine')" class="symptom-chip text-left p-3 rounded-xl border border-slate-600 bg-slate-700/50 hover:bg-slate-700 text-sm transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-eye text-slate-400"></i> Mild Eye Discharge
+                            </button>
+                            <button onclick="toggleSymptom(this, 'urgent')" class="symptom-chip text-left p-3 rounded-xl border border-slate-600 bg-slate-700/50 hover:bg-slate-700 text-sm transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-temperature-full text-slate-400"></i> High Fever / Shivering
+                            </button>
+                            <button onclick="toggleSymptom(this, 'routine')" class="symptom-chip text-left p-3 rounded-xl border border-slate-600 bg-slate-700/50 hover:bg-slate-700 text-sm transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-bowl-food text-slate-400"></i> Loss of Appetite (1 day)
+                            </button>
+                        </div>
+
+                        <!-- Triage Recommendation Output Box -->
+                        <div id="triage-result" class="p-5 rounded-2xl bg-slate-700/40 border border-slate-600 transition-all">
+                            <div class="flex items-start gap-4">
+                                <div id="triage-icon" class="w-12 h-12 rounded-xl bg-slate-600 text-slate-300 flex items-center justify-center text-xl shrink-0">
+                                    <i class="fa-solid fa-shield-cat"></i>
+                                </div>
+                                <div class="space-y-1">
+                                    <h4 id="triage-title" class="font-bold text-base text-slate-200">Select Symptoms Above</h4>
+                                    <p id="triage-desc" class="text-sm text-slate-400">Click one or more symptoms to see our recommended action and care guidance.</p>
+                                    <div id="triage-action" class="pt-2 hidden"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    
+
+       
+                    
+
+        <!-- Location, Hours & Emergency Section -->
+        <section id="location" class="py-20 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <!-- Left: Hours & Contacts -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="text-mint-600 font-bold text-sm uppercase tracking-wider">Visit Us</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900">Hospital Location & Hours</h2>
+                        <p class="text-slate-600 text-sm">We are conveniently located with ample parking and dedicated emergency intake entrances.</p>
+
+                        <!-- Operational Status Badge -->
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-100 text-emerald-800 text-sm font-bold">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span>Currently Open For Appointments & ER</span>
+                        </div>
+
+                        <!-- Hours Table -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-3">
+                            <h3 class="font-bold text-slate-900 text-base mb-2 border-b border-slate-100 pb-2">Operating Hours</h3>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-500">Monday - Friday</span>
+                                <span class="font-semibold text-slate-800">7:30 AM - 7:00 PM</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-500">Saturday</span>
+                                <span class="font-semibold text-slate-800">8:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-500">Sunday</span>
+                                <span class="font-semibold text-slate-800">10:00 AM - 4:00 PM</span>
+                            </div>
+                            <div class="pt-2 border-t border-slate-100 text-xs text-coral-600 font-semibold flex items-center gap-2">
+                                <i class="fa-solid fa-clock"></i> 24/7 ER Trauma Doctors Always On-Call
+                            </div>
+                        </div>
+
+                       
+  
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 text-white font-bold text-lg mb-4">
+                        <i class="fa-solid fa-paw text-mint-500"></i> VETCARE
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">Providing compassionate, top-tier veterinary care and 24/7 emergency services for dogs, cats, and exotic companions.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#services" class="hover:text-white transition-colors">Services & Pricing</a></li>
+                        <li><a href="#symptom-checker" class="hover:text-white transition-colors">Symptom Checker</a></li>
+                        <li><a href="#vets" class="hover:text-white transition-colors">Veterinarians</a></li>
+                        <li><a href="#location" class="hover:text-white transition-colors">Emergency Intake</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Services</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li>Annual Wellness Exams</li>
+                        <li>Vaccine Protocols</li>
+                        <li>Pet Dental Scaling</li>
+                        <li>Soft Tissue & Ortho Surgery</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-4">Follow Our Community</h4>
+                    <div class="flex gap-3 text-lg text-slate-300">
+                        <a href="#" class="hover:text-mint-400"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="hover:text-mint-400"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="hover:text-mint-400"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-800 text-xs text-center text-slate-500">
+                © VETCARE Pet Hospital. All rights reserved. Built with love for pets.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl border border-slate-100 overflow-hidden relative my-8 my-auto">
+            
+            <!-- Modal Header -->
+            <div class="bg-gradient-to-r from-mint-600 to-teal-600 text-white p-6 flex justify-between items-center">
+                <div>
+                    <h3 class="text-xl font-bold">Schedule an Appointment</h3>
+                    <p class="text-xs text-mint-100">VETCARE Pet Hospital Direct Booking</p>
+                </div>
+                <button onclick="closeBookingModal()" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content Form -->
+            <form id="appointment-form" onsubmit="handleFormSubmit(event)" class="p-6 space-y-6">
+                <!-- Step Indicator -->
+                <div class="flex items-center justify-between text-xs font-semibold text-slate-400 border-b border-slate-100 pb-3">
+                    <span id="step-badge-1" class="text-mint-600 flex items-center gap-1">1. Pet Details</span>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    <span id="step-badge-2" class="flex items-center gap-1">2. Service & Vet</span>
+                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    <span id="step-badge-3" class="flex items-center gap-1">3. Date & Owner Info</span>
+                </div>
+
+                <!-- Form Step 1: Pet Type & Name -->
+                <div id="booking-step-1" class="space-y-4">
+                    <label class="block text-sm font-bold text-slate-700">Select Pet Type *</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <label class="border-2 border-slate-200 rounded-2xl p-4 text-center cursor-pointer hover:border-mint-500 transition-all text-slate-700 has-[:checked]:border-mint-600 has-[:checked]:bg-mint-50">
+                            <input type="radio" name="petType" value="Dog" class="sr-only" checked>
+                            <i class="fa-solid fa-dog text-2xl mb-1 text-mint-600 block"></i>
+                            <span class="text-xs font-bold">Dog</span>
+                        </label>
+                        <label class="border-2 border-slate-200 rounded-2xl p-4 text-center cursor-pointer hover:border-mint-500 transition-all text-slate-700 has-[:checked]:border-mint-600 has-[:checked]:bg-mint-50">
+                            <input type="radio" name="petType" value="Cat" class="sr-only">
+                            <i class="fa-solid fa-cat text-2xl mb-1 text-mint-600 block"></i>
+                            <span class="text-xs font-bold">Cat</span>
+                        </label>
+                        <label class="border-2 border-slate-200 rounded-2xl p-4 text-center cursor-pointer hover:border-mint-500 transition-all text-slate-700 has-[:checked]:border-mint-600 has-[:checked]:bg-mint-50">
+                            <input type="radio" name="petType" value="Exotic" class="sr-only">
+                            <i class="fa-solid fa-dove text-2xl mb-1 text-mint-600 block"></i>
+                            <span class="text-xs font-bold">Exotic / Small Pet</span>
+                        </label>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Pet's Name *</label>
+                            <input type="text" id="petName" required placeholder="e.g. Buddy" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-mint-500 focus:outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Pet Age / Breed</label>
+                            <input type="text" id="petBreed" placeholder="e.g. 3 yrs, Golden Retriever" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-mint-500 focus:outline-none text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Step 2: Service & Vet -->
+                <div id="booking-step-2" class="space-y-4">
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Service Needed *</label>
+                            <select id="selectedService" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-mint-500 focus:outline-none text-sm bg-white">
+                                <option value="Wellness Exam">Wellness Exam (P5,000)</option>
+                                <option value="Vaccinations">Vaccinations (P500 - P2,500)</option>
+                                <option value="Dental Care">Dental Cleaning & Care (P1,500)</option>
+                                <option value="Surgical Care">Surgical Consultation</option>
+                                <option value="Diagnostics & Grooming">Diagnostics / Grooming</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Preferred Veterinarian</label>
+                            <select id="selectedVet" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-mint-500 focus:outline-none text-sm bg-white">
+                                <option value="First Available Vet">First Available Doctor</option>
+                                <option value="Dr. Sarah Jenkins">Dr. Sarah Jenkins (Senior Vet)</option>
+                                <option value="Dr. Marcus Vance">Dr. Marcus Vance (Feline/Exotics)</option>
+                                <option value="Dr. Elena Rostova">Dr. Elena Rostova (Dentistry/ER)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Step 3: Date, Time & Contact -->
+                <div id="booking-step-3" class="space-y-4">
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Preferred Date *</label>
+                            <input type="date" id="bookingDate" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-mint-500 focus:outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Time Slot *</label>
+                            <select id="bookingTime" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-mint-500 focus:outline-none text-sm bg-white">
+                                <option value="9:00 AM">9:00 AM</option>
+                                <option value="11:00 AM">11:00 AM</option>
+                                <option value="2:00 PM">2:00 PM</option>
+                                <option value="4:30 PM">4:30 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Owner Name *</label>
+                            <input type="text" id="ownerName" required placeholder="John Doe" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-mint-500 focus:outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Phone Number *</label>
+                            <input type="tel" id="ownerPhone" required placeholder="(555) 000-0000" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-mint-500 focus:outline-none text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit & Modal Footer -->
+                <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                    <button type="button" onclick="closeBookingModal()" class="text-slate-500 hover:text-slate-800 text-sm font-semibold">Cancel</button>
+                    <button type="submit" class="bg-mint-600 hover:bg-mint-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg shadow-mint-600/30 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Confirm Booking</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal / Summary Box -->
+    <div id="confirmation-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-3xl p-6 text-center space-y-4 shadow-2xl border border-slate-100 animate-bounce-once">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="text-2xl font-extrabold text-slate-900">Appointment Confirmed!</h3>
+            <p class="text-slate-600 text-sm">We have reserved your pet's appointment. A confirmation SMS & email reminder has been scheduled.</p>
+            
+            <!-- Details Receipt Card -->
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-left text-xs space-y-2">
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Pet Name:</span>
+                    <span id="summary-pet" class="font-bold text-slate-800">--</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Service:</span>
+                    <span id="summary-service" class="font-bold text-slate-800">--</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Doctor:</span>
+                    <span id="summary-vet" class="font-bold text-slate-800">--</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Date & Time:</span>
+                    <span id="summary-datetime" class="font-bold text-slate-800">--</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Owner Contact:</span>
+                    <span id="summary-phone" class="font-bold text-slate-800">--</span>
+                </div>
+            </div>
+
+            <button onclick="closeConfirmationModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition-all text-sm">
+                Done & Return to Site
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Set default date input to tomorrow
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateInput = document.getElementById('bookingDate');
+            if (dateInput) {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                dateInput.value = tomorrow.toISOString().split('T')[0];
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Filter Services Tabs
+        function filterServices(category) {
+            const cards = document.querySelectorAll('.service-card');
+            const tabs = document.querySelectorAll('#service-tabs button');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-mint-600', 'text-white');
+                tab.classList.add('bg-slate-100', 'text-slate-600');
+            });
+
+            event.currentTarget.classList.remove('bg-slate-100', 'text-slate-600');
+            event.currentTarget.classList.add('bg-mint-600', 'text-white');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Gallery Filter
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const tabs = document.querySelectorAll('.gallery-tab');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-slate-900', 'text-white');
+                tab.classList.add('bg-slate-100', 'text-slate-600');
+            });
+
+            event.currentTarget.classList.remove('bg-slate-100', 'text-slate-600');
+            event.currentTarget.classList.add('bg-slate-900', 'text-white');
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Interactive Pet Symptom Checker Logic
+        let activeSymptoms = new Set();
+
+        function toggleSymptom(button, urgencyLevel) {
+            button.classList.toggle('bg-mint-600');
+            button.classList.toggle('text-white');
+            button.classList.toggle('border-mint-500');
+
+            const symptomName = button.innerText.trim();
+            if (activeSymptoms.has(symptomName)) {
+                activeSymptoms.delete(symptomName);
+            } else {
+                activeSymptoms.add(symptomName);
+            }
+
+            evaluateSymptoms(urgencyLevel);
+        }
+
+        function evaluateSymptoms(lastUrgency) {
+            const resultBox = document.getElementById('triage-result');
+            const icon = document.getElementById('triage-icon');
+            const title = document.getElementById('triage-title');
+            const desc = document.getElementById('triage-desc');
+            const action = document.getElementById('triage-action');
+
+            if (activeSymptoms.size === 0) {
+                icon.className = 'w-12 h-12 rounded-xl bg-slate-600 text-slate-300 flex items-center justify-center text-xl shrink-0';
+                icon.innerHTML = '<i class="fa-solid fa-shield-cat"></i>';
+                title.innerText = 'Select Symptoms Above';
+                title.className = 'font-bold text-base text-slate-200';
+                desc.innerText = 'Click one or more symptoms to see our recommended action and care guidance.';
+                action.classList.add('hidden');
+                return;
+            }
+
+            // Simple logic: if emergency is present, flag emergency. Else if urgent, flag urgent.
+            const buttons = document.querySelectorAll('.symptom-chip.bg-mint-600');
+            let hasEmergency = false;
+            let hasUrgent = false;
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('onclick').includes('emergency')) hasEmergency = true;
+                if (btn.getAttribute('onclick').includes('urgent')) hasUrgent = true;
+            });
+
+            action.classList.remove('hidden');
+
+            if (hasEmergency) {
+                icon.className = 'w-12 h-12 rounded-xl bg-coral-500 text-white flex items-center justify-center text-xl shrink-0 animate-bounce';
+                icon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+                title.innerText = 'IMMEDIATE EMERGENCY CARE RECOMMENDED';
+                title.className = 'font-bold text-base text-coral-400';
+                desc.innerText = 'The symptoms selected indicate a potential critical life-threatening condition. Please bring your pet to our Emergency Trauma Center immediately.';
+                action.innerHTML = '<a href="tel:18005557387" class="inline-flex items-center gap-2 bg-coral-500 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-coral-600"><i class="fa-solid fa-phone"></i> Call ER (1-800) 555-PETS Now</a>';
+            } else if (hasUrgent) {
+                icon.className = 'w-12 h-12 rounded-xl bg-amber-500 text-slate-900 flex items-center justify-center text-xl shrink-0';
+                icon.innerHTML = '<i class="fa-solid fa-clock"></i>';
+                title.innerText = 'Same-Day Urgent Visit Advised';
+                title.className = 'font-bold text-base text-amber-400';
+                desc.innerText = 'Your pet should be evaluated by a veterinarian within 12-24 hours to prevent condition worsening.';
+                action.innerHTML = '<button onclick="openBookingModal()" class="inline-flex items-center gap-2 bg-amber-500 text-slate-900 px-4 py-2 rounded-xl text-xs font-bold hover:bg-amber-400"><i class="fa-solid fa-calendar"></i> Book Same-Day Slot</button>';
+            } else {
+                icon.className = 'w-12 h-12 rounded-xl bg-mint-500 text-white flex items-center justify-center text-xl shrink-0';
+                icon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+                title.innerText = 'Routine Wellness Check Recommended';
+                title.className = 'font-bold text-base text-mint-400';
+                desc.innerText = 'These symptoms appear non-critical. We recommend scheduling a routine consultation at your earliest convenience.';
+                action.innerHTML = '<button onclick="openBookingModal()" class="inline-flex items-center gap-2 bg-mint-600 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-mint-700"><i class="fa-solid fa-calendar"></i> Schedule Appointment</button>';
+            }
+        }
+
+        // Modal Controls & Form Logic
+        const bookingModal = document.getElementById('booking-modal');
+        const confirmationModal = document.getElementById('confirmation-modal');
+
+        function openBookingModal() {
+            bookingModal.classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            bookingModal.classList.add('hidden');
+        }
+
+        function quickBook(serviceName) {
+            document.getElementById('selectedService').value = serviceName;
+            openBookingModal();
+        }
+
+        function openBookingWithVet(vetName) {
+            document.getElementById('selectedVet').value = vetName;
+            openBookingModal();
+        }
+
+        function closeConfirmationModal() {
+            confirmationModal.classList.add('hidden');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const petType = document.querySelector('input[name="petType"]:checked').value;
+            const petName = document.getElementById('petName').value;
+            const service = document.getElementById('selectedService').value;
+            const vet = document.getElementById('selectedVet').value;
+            const date = document.getElementById('bookingDate').value;
+            const time = document.getElementById('bookingTime').value;
+            const phone = document.getElementById('ownerPhone').value;
+
+            // Fill summary modal
+            document.getElementById('summary-pet').innerText = `${petName} (${petType})`;
+            document.getElementById('summary-service').innerText = service;
+            document.getElementById('summary-vet').innerText = vet;
+            document.getElementById('summary-datetime').innerText = `${date} @ ${time}`;
+            document.getElementById('summary-phone').innerText = phone;
+
+            closeBookingModal();
+            confirmationModal.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
